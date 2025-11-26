@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script src="nui://game/ui/jquery.js"></script>
+    <script>
+        window.addEventListener('message', function (event) {
+            if (event.data.transactionType === 'playSound') {
+                const file = event.data.transactionFile;
+                const volume = event.data.transactionVolume || 1.0;
+
+                if (file) {
+                    const audio = new Audio('sounds/' + file + '.ogg');
+                    audio.volume = Math.max(0.0, Math.min(volume, 1.0)); // clamp 0–1
+                    audio.play();
+                }
+            }
+        });
+    </script>
+</head>
+
+<body></body>
+
+</html>
